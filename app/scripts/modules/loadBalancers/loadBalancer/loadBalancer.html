@@ -23,7 +23,7 @@
     </div>
     <div ng-if="!displayOptions.showServerGroups && displayOptions.showInstances">
       <instances
-        instances="loadBalancer.instances"
+        instances="loadBalancer.instances | instanceHasHealthProviderFilter"
         render-instances-on-scroll="displayOptions.renderInstancesOnScroll"></instances>
     </div>
   </div>

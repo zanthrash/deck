@@ -8,7 +8,14 @@ angular.module('deckApp.aws.loadBalancer.transformer.service', [
   .factory('awsLoadBalancerTransformer', function ( settings, _) {
 
     function updateHealthCounts(loadBalancer) {
-      var instances = loadBalancer.instances;
+      var instances = _.filter(loadBalancer.instances, function (instance) {
+        var loadBalancerHealth = _.find(instance.health, function (health) {
+          return health.type === 'LoadBalancer';
+        });
+
+        return loadBalancerHealth !== undefined;
+      });
+
       loadBalancer.healthCounts = {
         upCount: instances.filter(function (instance) {
           return instance.healthState === 'Up';

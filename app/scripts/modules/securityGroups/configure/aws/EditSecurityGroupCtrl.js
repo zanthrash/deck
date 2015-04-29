@@ -29,6 +29,8 @@ angular.module('deckApp.securityGroup.aws.edit.controller', [
       forceRefreshEnabled: true
     });
 
+    console.log(securityGroup);
+
     securityGroup.securityGroupIngress = _(securityGroup.inboundRules)
       .filter(function(rule) {
         return rule.securityGroup;
