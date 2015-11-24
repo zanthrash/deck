@@ -6,9 +6,8 @@ module.exports = angular.module('spinnaker.core.serverGroup.configure.common.ser
   require('exports?"restangular"!imports?_=lodash!restangular'),
   require('../../../cache/deckCacheFactory.js'),
   require('../../../cloudProvider/serviceDelegate.service.js'),
-  require('../../../config/settings.js')
 ])
-  .factory('serverGroupCommandBuilder', function (settings, Restangular, serviceDelegate) {
+  .factory('serverGroupCommandBuilder', function (Restangular, serviceDelegate) {
 
     function getServerGroup(application, account, region, serverGroupName) {
       return Restangular.one('applications', application).all('serverGroups').all(account).all(region).one(serverGroupName).get();

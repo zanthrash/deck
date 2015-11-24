@@ -6,7 +6,7 @@ let bakeryDetailUrl = process.env.BAKERY_DETAIL_URL || 'http://bakery.test.netfl
 let authEndpoint = process.env.AUTH_ENDPOINT || 'https://spinnaker-api-prestaging.prod.netflix.net/auth/info';
 
 window.spinnakerSettings = {
-  defaultProviders: ['aws'],
+  //defaultProviders: ['aws'],
   feedbackUrl: feedbackUrl,
   gateUrl: gateHost,
   bakeryDetailUrl: bakeryDetailUrl,

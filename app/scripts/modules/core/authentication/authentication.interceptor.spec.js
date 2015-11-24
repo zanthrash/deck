@@ -2,18 +2,20 @@
 
 describe('authenticationInterceptor', function() {
 
-  var interceptor, $q, settings, authenticationService, $rootScope;
+  var interceptor, $q, apiHostConfig, settings, authenticationService, $rootScope;
 
   beforeEach(
     window.module(
+      require('config'),
       require('./authentication.interceptor.service.js')
     )
   );
 
-  beforeEach(window.inject(function(authenticationInterceptor, _$q_, _settings_, _authenticationService_, _$rootScope_) {
+  beforeEach(window.inject(function(authenticationInterceptor, _$q_, _settings_, _apiHostConfig_, _authenticationService_, _$rootScope_) {
     interceptor = authenticationInterceptor;
     $q = _$q_;
     settings = _settings_;
+    apiHostConfig = _apiHostConfig_;
     authenticationService = _authenticationService_;
     $rootScope = _$rootScope_;
   }));
@@ -21,7 +23,7 @@ describe('authenticationInterceptor', function() {
   describe('non-intercepted requests', function() {
     it('resolves immediately for auth endpoint', function() {
       var resolved = null;
-      var request = { url: settings.authEndpoint };
+      var request = { url: apiHostConfig.authEndpoint() };
       interceptor.request(request).then(function(result) { resolved = result; });
       $rootScope.$digest();
       expect(resolved).toBe(request);

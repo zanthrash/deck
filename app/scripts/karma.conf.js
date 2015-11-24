@@ -37,6 +37,15 @@ module.exports = function(config) {
 
     webpack: {
       module: sharedConfig.module,
+      resolve: {
+        root: [
+          sharedConfig.nodeModulesPath,
+          sharedConfig.bowerComponentsPath,
+        ],
+        alias: {
+          'config': path.join(__dirname, 'config')
+        },
+      },
       watch: true,
     },
 

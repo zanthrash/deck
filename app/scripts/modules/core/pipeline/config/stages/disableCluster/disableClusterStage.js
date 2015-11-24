@@ -12,6 +12,5 @@ module.exports = angular.module('spinnaker.core.pipeline.stage.disableClusterSta
       label: 'Disable Cluster',
       description: 'Disables a cluster',
     });
-  })
-  .name;
+  });
 

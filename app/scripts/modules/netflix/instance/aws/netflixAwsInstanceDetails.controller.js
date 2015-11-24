@@ -3,6 +3,7 @@
 let angular = require('angular');
 
 module.exports = angular.module('spinnaker.netflix.instance.aws.controller', [
+  require('config'),
   require('angular-ui-router'),
   require('angular-ui-bootstrap'),
   require('../../../core/utils/lodash.js'),
@@ -13,7 +14,6 @@ module.exports = angular.module('spinnaker.netflix.instance.aws.controller', [
   require('../../../core/insight/insightFilterState.model.js'),
   require('../../../core/history/recentHistory.service.js'),
   require('../../../core/utils/selectOnDblClick.directive.js'),
-  require('../../../core/config/settings.js'),
   require('../../../amazon/instance/details/instance.details.controller.js'),
 ])
   .controller('netflixAwsInstanceDetailsCtrl', function ($scope, $state, $uibModal, InsightFilterStateModel, settings,

@@ -12,6 +12,5 @@ module.exports = angular.module('spinnaker.core.pipeline.stage.scaleDownClusterS
       label: 'Scale Down Cluster',
       description: 'Scales down a cluster',
     });
-  })
-  .name;
+  });
 

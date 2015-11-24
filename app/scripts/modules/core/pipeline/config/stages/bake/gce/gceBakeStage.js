@@ -22,7 +22,7 @@ module.exports = angular.module('spinnaker.core.pipeline.stage.gce.bakeStage', [
       ],
     });
   })
-  .controller('gceBakeStageCtrl', function($scope, bakeryService, $q, _, authenticationService, settings) {
+  .controller('gceBakeStageCtrl', function($scope, bakeryService, $q, _, authenticationService, featureFlagConfig, settings) {
 
     var stage = $scope.stage;
 
@@ -51,7 +51,7 @@ module.exports = angular.module('spinnaker.core.pipeline.stage.gce.bakeStage', [
         if (!$scope.stage.baseLabel && $scope.baseLabelOptions && $scope.baseLabelOptions.length) {
           $scope.stage.baseLabel = $scope.baseLabelOptions[0];
         }
-        $scope.viewState.rebakeControlEnabled = settings.feature.rebakeControlEnabled;
+        $scope.viewState.rebakeControlEnabled = featureFlagConfig.get('rebakeControlEnabled');
         $scope.viewState.loading = false;
       });
     }

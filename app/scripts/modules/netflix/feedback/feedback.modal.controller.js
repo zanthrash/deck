@@ -2,11 +2,11 @@
 let angular = require('angular');
 
 module.exports = angular.module('spinnaker.netflix.feedback.modal.controller', [
+  require('config'),
   require('../../core/cache/deckCacheFactory.js'),
   require('../../core/authentication/authentication.service.js'),
-  require('../../core/config/settings.js'),
 ])
-  .controller('FeedbackModalCtrl', function($scope, $location, $http, $modalInstance, settings, authenticationService) {
+  .controller('FeedbackModalCtrl', function($scope, $location, $http, $modalInstance, apiHostConfig, authenticationService) {
 
     $scope.states = {
       EDITING: 0,
@@ -58,7 +58,7 @@ module.exports = angular.module('spinnaker.netflix.feedback.modal.controller', [
 
     this.submit = function () {
       $scope.state = $scope.states.SUBMITTING;
-      $http.post(settings.feedbackUrl, buildRequestBody())
+      $http.post(apiHostConfig.feedbackEndpoint(), buildRequestBody())
         .success(function(result) {
           $scope.state = $scope.states.SUBMITTED;
           $scope.issueUrl = result.url;

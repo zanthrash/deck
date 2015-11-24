@@ -2,24 +2,24 @@
 
 describe('Service: accountService ', function () {
 
-  var $rootScope, accountService, $http, $q, settings, cloudProviderRegistry;
+  var $rootScope, accountService, $http, $q, defaultProvidersConfig, cloudProviderRegistry;
 
   beforeEach(
     window.module(
+      require('config'),
       require('./account.service')
     )
   );
 
   beforeEach(
-    window.inject(function (_$rootScope_, _accountService_, $httpBackend, _$q_, _settings_,
+    window.inject(function (_$rootScope_, _accountService_, $httpBackend, _$q_, _defaultProvidersConfig_,
                             _cloudProviderRegistry_) {
       $rootScope = _$rootScope_;
       accountService = _accountService_;
       $http = $httpBackend;
       $q = _$q_;
-      settings = _settings_;
+      defaultProvidersConfig = _defaultProvidersConfig_;
       cloudProviderRegistry = _cloudProviderRegistry_;
-
     })
   );
 
@@ -135,7 +135,7 @@ describe('Service: accountService ', function () {
 
       let test = (result) => expect(result).toEqual(['gce', 'cf']);
 
-      settings.defaultProviders = ['gce', 'cf'];
+      defaultProvidersConfig.set(['gce', 'cf']);
 
       accountService.listProviders(application).then(test);
 
@@ -147,7 +147,7 @@ describe('Service: accountService ', function () {
 
       let test = (result) => expect(result).toEqual(['gce', 'cf']);
 
-      settings.defaultProviders = ['aws'];
+      defaultProvidersConfig.set(['aws']);
 
       accountService.listProviders(application).then(test);
 
@@ -159,7 +159,7 @@ describe('Service: accountService ', function () {
 
       let test = (result) => expect(result).toEqual([]);
 
-      settings.defaultProviders = 'aws';
+      defaultProvidersConfig.set(['aws']);
 
       accountService.listProviders(application).then(test);
 
@@ -171,7 +171,7 @@ describe('Service: accountService ', function () {
 
       let test = (result) => expect(result).toEqual(['aws', 'gce', 'cf']);
 
-      delete settings.defaultProviders;
+      defaultProvidersConfig.set([]);
 
       accountService.listProviders(application).then(test);
 

@@ -7,10 +7,10 @@ module.exports = angular
     require('../../core/application/service/applications.read.service.js'),
     require('../../core/cache/deckCacheFactory.js'),
   ])
-  .controller('FastPropertiesController', function ($filter, applicationReader, settings) {
+  .controller('FastPropertiesController', function ($filter, applicationReader, featureFlagConfig, settings) {
     var vm = this;
 
-    vm.isOn = settings.feature.fastProperties;
+    vm.isOn = featureFlagConfig.get('fastProperties');
 
     vm.applicationsLoaded = false;
 

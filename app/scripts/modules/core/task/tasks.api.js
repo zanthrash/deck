@@ -5,12 +5,11 @@ let angular = require('angular');
 module.exports = angular.module('spinnaker.core.tasks.api', [
   require('exports?"restangular"!imports?_=lodash!restangular'),
   require('./kato.js'),
-  require('../config/settings.js'),
   require('../cache/deckCacheFactory.js'),
   require('../navigation/urlBuilder.service.js'),
   require('../orchestratedItem/orchestratedItem.transformer.js')
 ])
-  .factory('tasksApi', function(settings, Restangular, urlBuilderService, $timeout, $q, kato, $log, orchestratedItemTransformer) {
+  .factory('tasksApi', function(Restangular, urlBuilderService, $timeout, $q, kato, $log, orchestratedItemTransformer) {
 
     function getKatoTasks(task) {
       return task.getValueFor('kato.tasks');

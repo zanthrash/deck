@@ -7,5 +7,7 @@ module.exports = angular
     require('./apiHost'),
     require('./defaultTimeZone'),
     require('./featureFlags'),
-    require('./whatsNew')
+    require('./whatsNew'),
+    require('./defaultProviders'),
+    require('./settings'),
   ]);

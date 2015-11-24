@@ -8,7 +8,7 @@ module.exports = angular.module('spinnaker.core.pipeline.stage.bake.gce.executio
   require('../../../../../delivery/details/executionDetailsSectionNav.directive.js'),
 ])
   .controller('gceBakeExecutionDetailsCtrl', function ($scope, $stateParams, executionDetailsSectionService, $timeout,
-                                                       $interpolate, settings) {
+                                                       $interpolate, featureFlagConfig, settings) {
 
     $scope.configSections = ['bakeConfig', 'taskStatus'];
 
@@ -22,7 +22,7 @@ module.exports = angular.module('spinnaker.core.pipeline.stage.bake.gce.executio
         $scope.provider = $scope.stage.context.cloudProviderType || 'gce';
       });
 
-      $scope.rebakeControlEnabled = settings.feature.rebakeControlEnabled;
+      $scope.rebakeControlEnabled = featureFlagConfig.get('rebakeControlEnabled');
 
       $scope.bakeryDetailUrl = $interpolate(settings.bakeryDetailUrl);
     }

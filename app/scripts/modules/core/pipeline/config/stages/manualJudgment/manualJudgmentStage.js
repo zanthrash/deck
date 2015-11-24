@@ -47,5 +47,4 @@ module.exports = angular.module('spinnaker.core.pipeline.stage.manualJudgmentSta
       $scope.stage.notifications.splice(idx, 1);
     };
 
-  })
-  .name;
+  });

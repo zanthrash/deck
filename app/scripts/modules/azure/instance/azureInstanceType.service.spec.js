@@ -25,11 +25,10 @@ describe('Service: InstanceType', function () {
   });
 
 
-  beforeEach(window.inject(function (_azureInstanceTypeService_, _$httpBackend_, _settings_, infrastructureCaches) {
+  beforeEach(window.inject(function (_azureInstanceTypeService_, _$httpBackend_, infrastructureCaches) {
 
     this.azureInstanceTypeService = _azureInstanceTypeService_;
     this.$httpBackend = _$httpBackend_;
-    this.settings = _settings_;
 
     this.allTypes = [
       {account: "test", region: "us-west-2", name: "m1.small", availabilityZone: "us-west-2a"},

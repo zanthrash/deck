@@ -3,14 +3,14 @@
 let angular = require('angular');
 
 module.exports = angular.module('spinnaker.core.diff.service', [
+  require('config'),
   require('exports?"restangular"!imports?_=lodash!restangular'),
   require('../../../core/utils/lodash.js'),
-  require('../../../core/config/settings.js'),
 ])
-  .factory('diffService', function (_, Restangular, $q, settings) {
+  .factory('diffService', function (_, Restangular, $q, featureFlagConfig) {
 
     function getClusterDiffForAccount(accountName, clusterName) {
-      if (!settings.feature.clusterDiff) {
+      if (!featureFlagConfig.get('clusterDiff') ) {
         return $q.when({});
       }
       return Restangular
@@ -73,5 +73,4 @@ module.exports = angular.module('spinnaker.core.diff.service', [
       getClusterDiffForAccount: getClusterDiffForAccount,
       diffSecurityGroups: diffSecurityGroups,
     };
-  })
-  .name;
+  });

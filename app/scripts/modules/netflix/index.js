@@ -28,10 +28,9 @@ module.exports = angular
     require('./serverGroup/networking/networking.module.js'),
     require('./report/reservationReport.directive.js'),
 
-    require('../core/config/settings.js'),
   ])
-  .run(function(cloudProviderRegistry, settings) {
-    if (settings.feature && settings.feature.netflixMode) {
+  .run(function(cloudProviderRegistry, featureFlagConfig) {
+    if (featureFlagConfig.get('netflixMode') ) {
       cloudProviderRegistry.overrideValue(
         'aws',
         'instance.detailsTemplateUrl',

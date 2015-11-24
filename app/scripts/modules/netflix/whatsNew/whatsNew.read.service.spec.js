@@ -4,20 +4,21 @@ describe('Service: whatsNew reader ', function () {
 
   beforeEach(
     window.module(
+      require('config'),
       require('./whatsNew.read.service')
     )
   );
 
-  beforeEach(window.inject(function(whatsNewReader, $httpBackend, settings) {
+  beforeEach(window.inject(function(whatsNewReader, $httpBackend, whatsNewConfig) {
     this.reader = whatsNewReader;
     this.$http = $httpBackend;
-    this.settings = settings;
+    this.whatsNewConfig = whatsNewConfig;
   }));
 
   describe('getContents', function() {
 
     beforeEach(function() {
-      var gistId = this.settings.whatsNew.gistId;
+      var gistId = this.whatsNewConfig.gistId();
       this.url = ['https://api.github.com/gists/', gistId].join('');
     });
 
@@ -29,7 +30,7 @@ describe('Service: whatsNew reader ', function () {
             files: {},
           };
 
-      response.files[this.settings.whatsNew.fileName] = {
+      response.files[this.whatsNewConfig.fileName()] = {
         content: 'expected content',
       };
 

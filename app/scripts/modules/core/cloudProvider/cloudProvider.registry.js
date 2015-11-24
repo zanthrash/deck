@@ -3,8 +3,8 @@
 let angular = require('angular');
 
 module.exports = angular.module('spinnaker.core.cloudProvider.registry', [
+  require('config'),
   require('../utils/lodash.js'),
-  require('../config/settings.js'),
 ])
   .provider('cloudProviderRegistry', function(_, settings) {
 

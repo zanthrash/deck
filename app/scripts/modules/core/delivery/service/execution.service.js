@@ -2,6 +2,7 @@
 let angular = require('angular');
 
 module.exports = angular.module('spinnaker.core.delivery.executions.service', [
+  require('config'),
   require('angular-ui-router'),
   require('../../scheduler/scheduler.service.js'),
   require('../../cache/deckCacheFactory.js'),
@@ -9,7 +10,7 @@ module.exports = angular.module('spinnaker.core.delivery.executions.service', [
   require('./executions.transformer.service.js')
 ])
   .factory('executionService', function($stateParams, $http, $timeout, $q, $log,
-                                         scheduler, settings, appendTransform, executionsTransformer) {
+                                         scheduler, apiHostConfig, appendTransform, executionsTransformer) {
 
     const activeStatuses = ['RUNNING', 'SUSPENDED', 'NOT_STARTED'];
 
@@ -20,14 +21,14 @@ module.exports = angular.module('spinnaker.core.delivery.executions.service', [
     function getExecutions(applicationName, statuses=[]) {
 
       var deferred = $q.defer();
-      let url = [ settings.gateUrl, 'applications', applicationName, 'pipelines'].join('/');
+      let url = [ apiHostConfig.baseUrl(), 'applications', applicationName, 'pipelines'].join('/');
       if (statuses.length) {
         url += '?statuses=' + statuses.map((status) => status.toUpperCase()).join(',');
       }
       $http({
         method: 'GET',
         url: url,
-        timeout: settings.pollSchedule * 2 + 5000, // TODO: replace with apiHost call
+        timeout: apiHostConfig.getPollSchedule() * 2 + 5000, // TODO: replace with apiHostConfig call
       }).then(
         function(resp) {
           deferred.resolve(resp.data);
@@ -77,7 +78,7 @@ module.exports = angular.module('spinnaker.core.delivery.executions.service', [
       $http({
         method: 'PUT',
         url: [
-          settings.gateUrl,
+          apiHostConfig.baseUrl(),
           'applications',
           (applicationName || $stateParams.application), // TODO: remove stateParams
           'pipelines',
@@ -101,7 +102,7 @@ module.exports = angular.module('spinnaker.core.delivery.executions.service', [
       $http({
         method: 'DELETE',
         url: [
-          settings.gateUrl,
+          apiHostConfig.baseUrl(),
           'pipelines',
           executionId,
         ].join('/')
@@ -133,7 +134,7 @@ module.exports = angular.module('spinnaker.core.delivery.executions.service', [
           return executions;
         }),
         url: [
-          settings.gateUrl,
+          apiHostConfig.baseUrl(),
           'projects',
           project,
           'pipelines'

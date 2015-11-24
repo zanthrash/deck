@@ -3,13 +3,13 @@
 let angular = require('angular');
 
 module.exports = angular.module('spinnaker.core.account.service', [
+  require('config'),
   require('exports?"restangular"!imports?_=lodash!restangular'),
   require('../utils/lodash.js'),
   require('../cache/infrastructureCaches.js'),
-  require('../config/settings.js'),
   require('../cloudProvider/cloudProvider.registry.js'),
 ])
-  .factory('accountService', function(settings, $log, _, Restangular, $q, infrastructureCaches, cloudProviderRegistry) {
+  .factory('accountService', function( $log, _, Restangular, $q, infrastructureCaches, cloudProviderRegistry, defaultProvidersConfig) {
 
     let getAllAccountDetailsForProvider = _.memoize((providerName) => {
       return listAccounts(providerName)
@@ -68,8 +68,8 @@ module.exports = angular.module('spinnaker.core.account.service', [
         if (application) {
           let appProviders = application.attributes.cloudProviders ?
             application.attributes.cloudProviders.split(',') :
-            settings.defaultProviders ?
-              settings.defaultProviders :
+            defaultProvidersConfig.get().length ?
+              defaultProvidersConfig.get() :
               availableRegisteredProviders;
           return _.intersection(availableRegisteredProviders, appProviders);
         }
@@ -128,5 +128,4 @@ module.exports = angular.module('spinnaker.core.account.service', [
       getPreferredZonesByAccount: getPreferredZonesByAccount,
       getAvailabilityZonesForAccountAndRegion: getAvailabilityZonesForAccountAndRegion
     };
-  })
-  .name;
+  });

@@ -23,6 +23,7 @@ describe('Service: tasksApi - task complete, task force refresh', function() {
 
   beforeEach(
     window.module(
+      require('config'),
       require('./tasks.api.js')
     )
   );

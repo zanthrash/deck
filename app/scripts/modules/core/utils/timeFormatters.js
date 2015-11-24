@@ -4,11 +4,10 @@ let angular = require('angular');
 
 module.exports = angular.module('spinnaker.core.utils.timeFormatters', [
   require('./moment.js'),
-  require('../config/settings.js'),
 ])
-  .filter('timestamp', function(momentService, settings) {
+  .filter('timestamp', function(momentService, defaultTimeZoneConfig) {
     return function(input) {
-      var tz = settings.defaultTimeZone || 'America/Los_Angeles';
+      var tz = defaultTimeZoneConfig.get() || 'America/Los_Angeles';
       if (!input) {
         return '-';
       }
@@ -66,5 +65,4 @@ module.exports = angular.module('spinnaker.core.utils.timeFormatters', [
       }
       return '-';
     };
-  })
-  .name;
+  });

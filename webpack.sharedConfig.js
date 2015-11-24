@@ -12,6 +12,7 @@ module.exports = {
   },
   sharedAliases: {
     'core': path.join(__dirname, 'app', 'scripts', 'modules', 'core'),
+    'config': path.join(__dirname, 'deployable', 'config'),
   },
   //debug: true,
   //devtool: 'eval',

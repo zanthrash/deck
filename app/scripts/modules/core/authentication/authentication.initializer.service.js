@@ -3,14 +3,13 @@
 let angular = require('angular');
 
 module.exports = angular.module('spinnaker.authentication.initializer.service', [
-  require('../config/settings.js'),
   require('./authentication.service.js'),
 ])
-  .factory('authenticationInitializer', function ($http, $rootScope, redirectService, authenticationService, settings, $location) {
+  .factory('authenticationInitializer', function ($http, $rootScope, redirectService, authenticationService, apiHostConfig, $location) {
 
     function authenticateUser() {
       $rootScope.authenticating = true;
-      $http.get(settings.authEndpoint)
+      $http.get(apiHostConfig.authEndpoint())
         .success(function (data) {
           if (data.email) {
             authenticationService.setAuthenticatedUser(data.email);
@@ -21,7 +20,7 @@ module.exports = angular.module('spinnaker.authentication.initializer.service', 
           var redirect = headers('X-AUTH-REDIRECT-URL');
           if (status === 401 && redirect) {
             var callback = encodeURIComponent($location.absUrl());
-            redirectService.redirect(settings.gateUrl + redirect + '?callback=' + callback);
+            redirectService.redirect(apiHostConfig.baseUrl() + redirect + '?callback=' + callback);
           } else {
             $rootScope.authenticating = false;
           }
@@ -39,5 +38,4 @@ module.exports = angular.module('spinnaker.authentication.initializer.service', 
         $window.location.href = url;
       }
     };
-  })
-  .name;
+  });

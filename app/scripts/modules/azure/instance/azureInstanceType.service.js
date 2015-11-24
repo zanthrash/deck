@@ -6,10 +6,9 @@ module.exports = angular.module('spinnaker.azure.instanceType.service', [
   require('exports?"restangular"!imports?_=lodash!restangular'),
   require('../../core/cache/deckCacheFactory.js'),
   require('../../core/utils/lodash.js'),
-  require('../../core/config/settings.js'),
   require('../../core/cache/infrastructureCaches.js'),
 ])
-  .factory('azureInstanceTypeService', function ($http, $q, settings, _, Restangular, infrastructureCaches) {
+  .factory('azureInstanceTypeService', function ($http, $q, _, Restangular, infrastructureCaches) {
 
     var m3 = {
       type: 'M3',

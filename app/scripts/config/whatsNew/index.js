@@ -5,7 +5,7 @@ let angular = require('angular');
 
 module.exports = angular
   .module('spinnaker.core.config.whatsNew', [])
-  .provider('whatsNew', function() {
+  .provider('whatsNewConfig', function() {
     let whatsNew = {
       gistId: '',
       fileName: 'news.md',
@@ -37,7 +37,5 @@ module.exports = angular
           }
         };
       }
-    }
-
-;
+    };
   });

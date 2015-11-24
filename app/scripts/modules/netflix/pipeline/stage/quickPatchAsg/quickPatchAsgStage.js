@@ -4,10 +4,9 @@ let angular = require('angular');
 
 module.exports = angular.module('spinnaker.netflix.pipeline.stage.quickPatchAsgStage', [
   require('../../../../core/pipeline/config/pipelineConfigProvider.js'),
-  require('../../../../core/config/settings.js'),
 ])
-  .config(function(pipelineConfigProvider, settings) {
-    if (settings.feature && settings.feature.netflixMode) {
+  .config(function(pipelineConfigProvider, featureFlagConfigProvider) {
+    if (featureFlagConfigProvider.get('netflixMode') ) {
       pipelineConfigProvider.registerStage({
         label: 'Quick Patch Server Group',
         description: 'Quick Patches a server group',
@@ -56,6 +55,5 @@ module.exports = angular.module('spinnaker.netflix.pipeline.stage.quickPatchAsgS
     })();
 
     $scope.$watch('stage.credentials', $scope.accountUpdated);
-  })
-  .name;
+  });
 

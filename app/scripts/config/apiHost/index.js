@@ -5,17 +5,19 @@ const angular = require('angular');
 module.exports = angular.module('spinnaker.core.config.apiHost', [
     //require('exports?"restangular"!imports?_=lodash!restangular'),
 ])
-  .provider('apiHost', function() {
+  .provider('apiHostConfig', function() {
 
     let host = null;
     let authEndpoint = null;
+    let feedbackEndpoint = null;
+    let bakeryDetailEndpoint = null;
     let useHttps = true;
     let authEnabled = false;
     let pollSchedule = 30000;
 
     let baseUrlFn = () => {
       if (host === null) {
-        throw ("API host has not been set. Set with apiHostProvider#setHost");
+        throw ("API host has not been set. Set with apiHostConfigProvider#setHost");
       }
       return useHttps ? `https://${ host }` : `http://${ host }`;
     };
@@ -29,6 +31,12 @@ module.exports = angular.module('spinnaker.core.config.apiHost', [
       setAuthEndpoint: (endpoint) => {
         authEndpoint = endpoint;
       },
+      setFeedbackEndpoint: (endpoint) => {
+        feedbackEndpoint = endpoint;
+      },
+      setBakeryDetail: (endpoint) => {
+        bakeryDetailEndpoint = endpoint;
+      },
       useHttps: (bool) => {
         useHttps = bool;
       },
@@ -41,6 +49,9 @@ module.exports = angular.module('spinnaker.core.config.apiHost', [
       enableAuth: () => {
         authEnabled = true;
       },
+      authEnabled: () => {
+        return authEnabled;
+      },
       baseUrl: baseUrlFn,
       getPollSchedule: () => {
         return pollSchedule;
@@ -49,14 +60,27 @@ module.exports = angular.module('spinnaker.core.config.apiHost', [
 
       $get: function() {
         return {
+          setHost: (url) => host = url,
           host: () => {
             return host;
           },
           authEndpoint: () => {
             return authEndpoint;
           },
+          feedbackEndpoint: () => {
+            return feedbackEndpoint;
+          },
+          backeryDetailEndpoint: () => {
+            return bakeryDetailEndpoint;
+          },
           authEnabled: () => {
             return authEnabled;
+          },
+          disableAuth: () => {
+            authEnabled = false;
+          },
+          enableAuth: () => {
+            authEnabled = true;
           },
           getPollSchedule: () => {
             return pollSchedule;

@@ -31,6 +31,9 @@
     "$": true,
     "_": true,
     "__GATE_HOST__": true,
+    "__AUTH_ENDPOINT__": true,
+    "__BAKERY_DETAIL_URL__": true,
+    "__FEEDBACK_URL__": true,
     "__DEFAULT_TIME_ZONE__": true,
     "__NETFLIX_ENABLED__": true,
     "__CLOUDFOUNDRY_ENABLED__": true,
@@ -40,5 +43,13 @@
     "__WHATS_NEW_GIST_ID__" : true,
     "__WHATS_NEW_FILE_NAME__": true,
     "__WHATS_NEW_ACCESS_TOKEN__" : true,
+    "__DEFAULT_PROVIDERS__": true,
+    "__FEATURE_REBAKE_ENABELED__": true,
+    "__FEATURE_NETFLIX_MODE_ENABELED__": true,
+    "__FEATURE_BLESK_ENABLED__": true,
+    "__FEATURE_FAST_PROPERTIES_ENABLED__": true,
+    "__FEATURE_VPC_MIGRATOR_ENABELED__" : true,
+    "__FEATURE_CLUSTER_DIFF_ENABLED__": true,
+    "__FEATRUE_PIPELINES_ENABLED__" : true,
   }
 }

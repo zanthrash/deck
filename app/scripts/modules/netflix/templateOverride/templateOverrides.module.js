@@ -5,10 +5,9 @@ const angular = require('angular');
 module.exports = angular
   .module('spinnaker.netflix.templateOverride.templateOverrides', [
     require('../../core/templateOverride/templateOverride.registry.js'),
-    require('../../core/config/settings.js'),
   ])
-  .run(function(templateOverrideRegistry, settings) {
-    if (settings.feature && settings.feature.netflixMode) {
+  .run(function(templateOverrideRegistry, featureFlagConfig) {
+    if (featureFlagConfig.get('netflixMode')) {
       templateOverrideRegistry.override('applicationNavHeader', require('./applicationNav.html'));
       templateOverrideRegistry.override('pipelineConfigActions', require('./pipelineConfigActions.html'));
       templateOverrideRegistry.override('spinnakerHeader', require('./spinnakerHeader.html'));

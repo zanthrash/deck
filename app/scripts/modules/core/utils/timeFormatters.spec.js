@@ -3,7 +3,10 @@
 describe('Filter: timeFormatters', function() {
 
   beforeEach(
-    window.module('spinnaker.core.utils.timeFormatters')
+    window.module(
+      require('config'),
+      require('./timeFormatters')
+    )
   );
 
   describe('timePickerTime', function() {
@@ -13,9 +16,9 @@ describe('Filter: timeFormatters', function() {
     describe('timePicker', function () {
       beforeEach(
         window.inject(
-          function($filter, settings) {
+          function($filter, defaultTimeZoneConfig) {
             filter = $filter('timePickerTime');
-            settings.defaultTimeZone = 'Etc/GMT+0';
+            defaultTimeZoneConfig.set('Etc/GMT+0');
           }
         )
       );
@@ -47,8 +50,9 @@ describe('Filter: timeFormatters', function() {
     describe('timestamp', function () {
       beforeEach(
         window.inject(
-          function($filter) {
+          function($filter, defaultTimeZoneConfig) {
             filter = $filter('timestamp');
+            defaultTimeZoneConfig.set('Etc/GMT+0');
           }
         )
       );

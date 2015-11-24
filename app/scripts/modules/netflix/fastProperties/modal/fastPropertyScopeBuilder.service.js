@@ -4,10 +4,10 @@ let angular = require('angular');
 
 module.exports = angular
   .module('spinnaker.fastProperty.scopeBuilder.service', [
+    require('config'),
     require('../../../core/utils/lodash.js'),
     require('../../../core/application/listExtractor/listExtractor.service'),
     require('../../../core/application/service/applications.read.service.js'),
-    require('../../../core/config/settings.js'),
   ])
   .factory('fastPropertyScopeBuilderService', (_, appListExtractorService, applicationReader, settings) => {
 
@@ -208,5 +208,4 @@ module.exports = angular
       createAvailabilityZoneChangeFn: createAvailabilityZoneChangeFn,
       createInstanceChangeFn: createInstanceChangeFn,
     };
-  })
-  .name;
+  });

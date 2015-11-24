@@ -3,6 +3,7 @@
 let angular = require('angular');
 
 module.exports = angular.module('spinnaker.loadBalancer.aws.create.controller', [
+  require('config'),
   require('../../../core/loadBalancer/loadBalancer.write.service.js'),
   require('../../../core/loadBalancer/loadBalancer.read.service.js'),
   require('../../../core/account/account.service.js'),
@@ -18,7 +19,6 @@ module.exports = angular.module('spinnaker.loadBalancer.aws.create.controller', 
   require('../../../core/region/regionSelectField.directive.js'),
   require('../../../core/account/accountSelectField.directive.js'),
   require('../../subnet/subnetSelectField.directive.js'),
-  require('../../../core/config/settings.js'),
 ])
   .controller('awsCreateLoadBalancerCtrl', function($scope, $modalInstance, $state, _,
                                                     accountService, awsLoadBalancerTransformer, securityGroupReader,

@@ -6,7 +6,6 @@ module.exports = angular
   .module('spinnaker.netflix.fastProperties.strategySelector.controller', [
     require('../fastProperty.strategy.provider.js'),
     require('../fastProperty.read.service.js'),
-    require('../../../core/config/settings.js'),
     require('../../../core/application/service/applications.read.service.js'),
     require('../../../core/utils/lodash.js'),
     require('../../../core/application/listExtractor/listExtractor.service'),
@@ -14,7 +13,7 @@ module.exports = angular
     require('./fastPropertyScopeBuilder.service'),
   ])
   .controller('FastPropertyUpsertController', function ($scope, $controller, $templateCache, $compile, $modalInstance, $q, _,
-                                                        settings, applicationList, applicationReader, fastPropertyReader,
+                                                        applicationList, applicationReader, fastPropertyReader,
                                                         fastPropertyStrategy, clusters, appName, fastProperty, isEditing,
                                                         appListExtractorService, fastPropertyWizardManagementService,
                                                         fastPropertyScopeBuilderService) {
@@ -260,5 +259,4 @@ module.exports = angular
 
     vm.init();
 
-  })
-  .name;
+  });

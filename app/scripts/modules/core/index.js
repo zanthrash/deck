@@ -52,7 +52,6 @@ module.exports = angular
     require('./cloudProvider/cloudProviderLabel.directive.js'),
     require('./cloudProvider/serviceDelegate.service.js'),
     require('./cluster/cluster.module.js'),
-    require('./config/settings.js'),
     require('./confirmationModal/confirmationModal.service.js'),
 
     require('./delivery/delivery.module.js'),
@@ -125,9 +124,9 @@ module.exports = angular
 
     require('./validation/validation.module.js'),
   ])
-  .run(function($rootScope, $log, $state, settings) {
+  .run(function($rootScope, $log, $state, featureFlagConfig) {
 
-    $rootScope.feature = settings.feature;
+    $rootScope.feature = featureFlagConfig.getAll();
 
     $rootScope.$state = $state; // TODO: Do we really need this?
 
@@ -174,10 +173,6 @@ module.exports = angular
       '  </div>' +
       '  </div>');
   })
-  .config(function ($logProvider, statesProvider) {
-    statesProvider.setStates();
-    $logProvider.debugEnabled(true);
-  })
   .config(function($uibTooltipProvider) {
     $uibTooltipProvider.options({
       appendToBody: true
@@ -190,9 +185,9 @@ module.exports = angular
     $modalProvider.options.backdrop = 'static';
     $modalProvider.options.keyboard = false;
   })
-  .config(function(RestangularProvider, settings) {
-    RestangularProvider.setBaseUrl(settings.gateUrl);
-    RestangularProvider.setDefaultHttpFields({timeout: settings.pollSchedule * 2 + 5000}); // TODO: replace with apiHost call
+  .config(function(RestangularProvider, apiHostConfigProvider) {
+    RestangularProvider.setBaseUrl(apiHostConfigProvider.baseUrl());
+    RestangularProvider.setDefaultHttpFields({timeout: apiHostConfigProvider.getPollSchedule() * 2 + 5000}); // TODO: replace with apiHostConfig call
   })
   .config(function($httpProvider){
     $httpProvider.defaults.headers.patch = {

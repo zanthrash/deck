@@ -3,12 +3,12 @@
 let angular = require('angular');
 
 module.exports = angular.module('spinnaker.providerSelection.service', [
+  require('config'),
   require('../../account/account.service.js'),
-  require('../../config/settings.js'),
   require('../../utils/lodash.js'),
   require('../cloudProvider.registry.js'),
 ])
-  .factory('providerSelectionService', function($uibModal, $q, _, accountService, settings, cloudProviderRegistry) {
+  .factory('providerSelectionService', function($uibModal, $q, _, accountService, defaultProvidersConfig, cloudProviderRegistry) {
     function selectProvider(application, feature) {
       return accountService.listProviders(application).then((providers) => {
         var provider;
@@ -28,7 +28,7 @@ module.exports = angular.module('spinnaker.providerSelection.service', [
         } else if (providers.length === 1) {
           provider = $q.when(providers[0]);
         } else {
-          provider = $q.when(settings.defaultProvider || 'aws');
+          provider = $q.when(defaultProvidersConfig.get() || 'aws');
         }
         return provider;
       });

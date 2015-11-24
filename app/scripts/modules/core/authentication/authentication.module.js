@@ -4,7 +4,6 @@ let angular = require('angular');
 
 module.exports = angular.module('spinnaker.authentication', [
   require('./authentication.service.js'),
-  require('../config/settings.js'),
   require('./authentication.initializer.service.js'),
   require('./authentication.interceptor.service.js')
 ])
@@ -16,14 +15,13 @@ module.exports = angular.module('spinnaker.authentication', [
       authenticationInitializer.authenticateUser();
     }
   })
-  .factory('gateRequestInterceptor', function (settings) {
+  .factory('gateRequestInterceptor', function (apiHostConfig) {
     return {
       request: function (config) {
-        if (config.url.indexOf(settings.gateUrl) === 0) {
+        if (config.url.indexOf(apiHostConfig.baseUrl()) === 0) {
           config.withCredentials = true;
         }
         return config;
       }
     };
-  })
-  .name;
+  });

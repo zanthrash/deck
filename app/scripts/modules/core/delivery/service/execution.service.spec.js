@@ -7,18 +7,23 @@ describe('Service: executionService', function () {
   var executionService;
   var $httpBackend;
   var settings;
+  var apiHostConfig;
 
   beforeEach(
     window.module(
+      require('config'),
       require('./execution.service')
     )
   );
 
   beforeEach(
-    window.inject(function (_executionService_, _$httpBackend_, _settings_) {
+    window.inject(function (_executionService_, _$httpBackend_, _settings_, _apiHostConfig_) {
       executionService = _executionService_;
       $httpBackend = _$httpBackend_;
+      apiHostConfig = _apiHostConfig_;
       settings = _settings_;
+
+      apiHostConfig.setHost('spinnaker-api.netflix.net');
     })
   );
 
@@ -35,7 +40,7 @@ describe('Service: executionService', function () {
 
     it('should resolve the promise if a 200 response is received with empty array', function(){
       let url = [
-          settings.gateUrl,
+           apiHostConfig.baseUrl(),
           'applications',
           'deck',
           'pipelines',
@@ -59,7 +64,7 @@ describe('Service: executionService', function () {
 
     it('should reject the promise if a 429 response is received', function(){
       let url = [
-        settings.gateUrl,
+        apiHostConfig.baseUrl(),
         'applications',
         'deck',
         'pipelines',

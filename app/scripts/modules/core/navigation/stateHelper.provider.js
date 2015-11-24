@@ -13,6 +13,7 @@ module.exports = angular.module('spinnaker.core.navigation.stateHelper.provider'
         fixStateName(newState);
         fixStateViews(newState);
       }
+
       $stateProvider.state(newState);
 
       if(newState.children && newState.children.length){
@@ -46,5 +47,4 @@ module.exports = angular.module('spinnaker.core.navigation.stateHelper.provider'
       });
       replaced.forEach((key) => delete views[key]);
     }
-  })
-  .name;
+  });

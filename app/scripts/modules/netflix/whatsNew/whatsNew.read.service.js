@@ -5,16 +5,15 @@ let angular = require('angular');
 
 module.exports = angular.module('spinnaker.netflix.whatsNew.read.service', [
   require('../../core/cache/deckCacheFactory.js'),
-  require('../../core/config/settings.js')
 ])
-  .factory('whatsNewReader', function ($http, settings, $log) {
+  .factory('whatsNewReader', function ($http, whatsNewConfig, $log) {
     function extractFileContent(data) {
-      return data.files[settings.whatsNew.fileName].content;
+      return data.files[whatsNewConfig.fileName()].content;
     }
 
     function getWhatsNewContents() {
-      var gistId = settings.whatsNew.gistId,
-          accessToken = settings.whatsNew.accessToken || null,
+      var gistId = whatsNewConfig.gistId(),
+          accessToken = whatsNewConfig.accessToken() || null,
         url = ['https://api.github.com/gists/', gistId].join('');
       if (accessToken) {
         url += '?access_token=' + accessToken;

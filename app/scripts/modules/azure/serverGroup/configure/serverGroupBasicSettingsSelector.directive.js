@@ -31,5 +31,4 @@ module.exports = angular
       $modalStack: $modalStack,
       $state: $state,
     }));
-  })
-  .name;
+  });
