@@ -3,36 +3,36 @@
 const angular = require('angular');
 
 let modulesToInclude = [
-  require('./core'),
+  require('./modules/core'),
 ];
 
 if (__NETFLIX_ENABLED__) {
   modulesToInclude.push(
-    require('./netflix')
+    require('./modules/netflix')
   );
 }
 
 if (__AMAZON_ENABLED__) {
   modulesToInclude.push(
-    require('./amazon')
+    require('./modules/amazon')
   );
 }
 
 if (__GOOGLE_ENABLED__) {
   modulesToInclude.push(
-    require('./google')
+    require('./modules/google')
   );
 }
 
 if (__CLOUDFOUNDRY_ENABLED__) {
   modulesToInclude.push(
-    require('./cloudfoundry')
+    require('./modules/cloudfoundry')
   );
 }
 
 if (__TITAN_ENABLED__) {
   modulesToInclude.push(
-    require('./titan')
+    require('./modules/titan')
   );
 }
 
@@ -40,10 +40,10 @@ if (__TITAN_ENABLED__) {
 // manually appending .name for now
 module.exports = angular.module('netflix.spinnaker', modulesToInclude)
 .run(() => {
-  console.info('run: src/index.jx');
+  console.info('run: app/scripts/index.js');
 })
 .config(() => {
-  console.info('config: src/index.jx');
+  console.info('config: app/scripts/index.js');
 })
 
 .name;
