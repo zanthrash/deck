@@ -1,6 +1,6 @@
 'use strict';
 
-var webpackConf = require('./webpack.config.js');
+var webpackConf = require('./webpack.sharedConfig.js');
 
 module.exports = function(config) {
   config.set({
@@ -26,7 +26,7 @@ module.exports = function(config) {
     preprocessors: {
       //'app/**/*.spec.js': ['webpack'],
       'settings.js': ['webpack'],
-      'test/test_index.js': ['webpack'],
+      'test/**/*.js': ['webpack'],
     },
 
     webpack: {
