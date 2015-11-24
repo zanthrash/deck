@@ -11,7 +11,7 @@ module.exports = {
     "__TITAN_ENABLED__": process.env.TITAN_ENABLED || true,
   },
   sharedAliases: {
-    'core': path.join(__dirname, 'src', 'core'),
+    'core': path.join(__dirname, 'app', 'scripts', 'modules', 'core'),
   },
   //debug: true,
   //devtool: 'eval',

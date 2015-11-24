@@ -125,4 +125,4 @@ module.exports = angular.module('spinnaker.azure.loadBalancer.details.controller
     };
 
   }
-).name;
+);

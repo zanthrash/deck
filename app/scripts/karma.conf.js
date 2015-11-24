@@ -2,7 +2,7 @@
 
 var path = require('path');
 var sharedConfig = require(
-  path.join(__dirname, '..', 'webpack.sharedConfig.js')
+  path.join(__dirname, '..', '..', 'webpack.sharedConfig.js')
 );
 
 module.exports = function(config) {

@@ -7,4 +7,4 @@ module.exports = angular.module('spinnaker.core.validation', [
   require('./triggerValidation.directive.js'),
   require('./validationError.directive.js')
 ])
-.name;
+;

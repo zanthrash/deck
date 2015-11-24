@@ -7,4 +7,4 @@ module.exports = angular.module('spinnaker.core.account', [
   require('./providerToggles.directive.js'),
   require('./accountLabelColor.directive.js'),
 ])
-.name;
+;

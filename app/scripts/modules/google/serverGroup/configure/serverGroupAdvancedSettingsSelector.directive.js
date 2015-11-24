@@ -33,4 +33,4 @@ module.exports = angular
       $scope.command.tags.splice(index, 1);
     };
 
-  }).name;
+  });

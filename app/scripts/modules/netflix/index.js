@@ -48,4 +48,4 @@ module.exports = angular
         require('./serverGroup/awsServerGroupDetails.html')
       );
     }
-  }).name;
+  });

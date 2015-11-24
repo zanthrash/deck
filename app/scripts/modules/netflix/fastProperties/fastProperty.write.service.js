@@ -12,7 +12,7 @@ module.exports = angular
 
     function upsertFastProperty(fastProperty) {
       //var payload = createPromotedPayload(fastProperty);
-      fastProperty.updatedBy = authenticationService.getAuthenticatedUser().name;
+      fastProperty.updatedBy = authenticationService.getAuthenticatedUser();
       fastProperty.sourceOfUpdate = 'spinnaker';
       return Restangular
         .all('fastproperties')
@@ -87,4 +87,4 @@ module.exports = angular
       continuePromotion: continuePromotion,
       stopPromotion: stopPromotion,
     };
-  }).name;
+  });

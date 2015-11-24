@@ -68,4 +68,4 @@ module.exports = angular.module('spinnaker.azure', [
         createSecurityGroupController: 'azureCreateSecurityGroupCtrl',
       }
     });
-  }).name;
+  });

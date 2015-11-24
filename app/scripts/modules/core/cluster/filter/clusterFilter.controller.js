@@ -61,4 +61,4 @@ module.exports = angular.module('cluster', [
     }));
   }
 )
-.name;
+;

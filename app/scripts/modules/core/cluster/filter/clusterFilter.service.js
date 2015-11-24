@@ -313,5 +313,5 @@ module.exports = angular
     };
   }
 )
-.name;
+;
 

@@ -336,5 +336,5 @@ module.exports = angular.module('spinnaker.gce.serverGroupCommandBuilder.service
       buildServerGroupCommandFromPipeline: buildServerGroupCommandFromPipeline,
     };
 })
-.name;
+;
 

@@ -29,7 +29,7 @@ module.exports = angular.module('spinnaker.core.pipeline.stage.gce.bakeStage', [
     stage.region = 'global';
 
     if (!$scope.stage.user) {
-      $scope.stage.user = authenticationService.getAuthenticatedUser().name;
+      $scope.stage.user = authenticationService.getAuthenticatedUser();
     }
 
     $scope.viewState = {
@@ -67,4 +67,4 @@ module.exports = angular.module('spinnaker.core.pipeline.stage.gce.bakeStage', [
     $scope.$watch('stage', deleteEmptyProperties, true);
 
     initialize();
-  }).name;
+  });

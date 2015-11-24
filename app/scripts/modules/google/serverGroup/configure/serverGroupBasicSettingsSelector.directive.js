@@ -30,4 +30,4 @@ module.exports = angular.module('spinnaker.serverGroup.configure.gce.basicSettin
       $state: $state,
     }));
   })
-.name;
+;

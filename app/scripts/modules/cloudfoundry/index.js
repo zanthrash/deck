@@ -68,4 +68,4 @@ module.exports = angular.module('spinnaker.cf', [
                 //createSecurityGroupController: 'cfCreateSecurityGroupCtrl',
             },
         });
-    }).name;
+    });

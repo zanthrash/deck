@@ -116,4 +116,4 @@ module.exports = angular.module('spinnaker.core.delivery.manualPipelineExecution
       $scope.pipelineSelected();
     }
 
-  }).name;
+  });

@@ -313,4 +313,4 @@ module.exports = angular.module('spinnaker.aws.instanceType.service', [
     };
   }
 )
-.name;
+;

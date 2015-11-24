@@ -327,4 +327,4 @@ module.exports = angular.module('spinnaker.core.pipeline.config.graph.directive'
 
       },
     };
-  }).name;
+  });

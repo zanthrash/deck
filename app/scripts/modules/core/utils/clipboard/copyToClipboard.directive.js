@@ -1,7 +1,7 @@
 'use strict';
 
 let angular = require('angular');
-let Clipboard = require('clipboard');
+let Clipboard = require('clipboard/dist/clipboard.js');
 
 require('./copyToClipboard.directive.less');
 

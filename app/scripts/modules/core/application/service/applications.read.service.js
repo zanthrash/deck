@@ -436,4 +436,4 @@ module.exports = angular
       getApplicationWithoutAppendages: getApplicationEndpoint,
       addExecutionsToApplication: addExecutionsToApplication,
     };
-  }).name;
+  });

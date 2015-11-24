@@ -16,7 +16,7 @@ definitions.__WHATS_NEW_FILE_NAME__ = process.env.WHATS_NEW_FILE_NAME || "'news.
 definitions.__WHATS_NEW_ACCESS_TOKEN__ = process.env.WHATS_NEW_ACCESS_TOKEN || "''";
 
 var alias = sharedConfig.sharedAliases;
-alias['src'] = path.join(__dirname, '..', 'src');
+alias['src'] = path.join(__dirname, '..', 'app', 'scripts');
 
 module.exports = {
   debug: sharedConfig.debug,

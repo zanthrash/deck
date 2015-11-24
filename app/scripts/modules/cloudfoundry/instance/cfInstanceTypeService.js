@@ -318,4 +318,4 @@ module.exports = angular.module('spinnaker.cf.instanceType.service', [
     };
   }
 )
-.name;
+;

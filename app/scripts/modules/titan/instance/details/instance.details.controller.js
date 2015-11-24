@@ -218,4 +218,4 @@ module.exports = angular.module('spinnaker.instance.detail.titan.controller', [
     $scope.account = instance.account;
 
   }
-).name;
+);

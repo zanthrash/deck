@@ -328,4 +328,4 @@ module.exports = angular.module('spinnaker.azure.loadBalancer.create.controller'
     this.cancel = function () {
       $modalInstance.dismiss();
     };
-  }).name;
+  });

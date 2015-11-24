@@ -354,4 +354,4 @@ module.exports = angular.module('spinnaker.instance.detail.cf.controller', [
     $scope.account = instance.account;
 
   }
-).name;
+);

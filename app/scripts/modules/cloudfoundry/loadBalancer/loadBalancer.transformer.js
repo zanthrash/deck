@@ -101,4 +101,4 @@ module.exports = angular.module('spinnaker.cf.loadBalancer.transformer', [
       convertLoadBalancerForEditing: convertLoadBalancerForEditing,
     };
 
-  }).name;
+  });

@@ -11,4 +11,4 @@ module.exports = angular.module('spinnaker.serverGroup.configure.cf', [
   require('./serverGroupBasicSettingsSelector.directive.js'),
 
 ])
-.name;
+;

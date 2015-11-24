@@ -19,7 +19,7 @@ module.exports = angular.module('spinnaker.core.pipeline.stage.scriptStage', [
       $scope.stage = stage;
 
       if (!$scope.stage.user) {
-        $scope.stage.user = authenticationService.getAuthenticatedUser().name;
+        $scope.stage.user = authenticationService.getAuthenticatedUser();
       }
 
       $scope.viewState = {

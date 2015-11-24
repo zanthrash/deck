@@ -300,4 +300,4 @@ module.exports = angular.module('spinnaker.azure.instanceType.service', [
     };
   }
 )
-.name;
+;

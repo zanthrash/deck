@@ -11,4 +11,4 @@ module.exports = angular.module('spinnaker.core.pipeline.stage.executionWindows'
   require('../stage.module.js'),
   require('../core/stage.core.module.js'),
 ])
-.name;
+;

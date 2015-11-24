@@ -16,4 +16,4 @@ module.exports = angular
       templateOverrideRegistry.override('aws.serverGroup.capacity', require('../serverGroup/capacity/awsServerGroupCapacity.html'));
       templateOverrideRegistry.override('aws.resize.modal', require('../serverGroup/resize/awsResizeServerGroup.html'));
     }
-  }).name;
+  });

@@ -329,4 +329,4 @@ module.exports = angular.module('spinnaker.azure.serverGroup.details.controller'
       return null;
     };
   }
-).name;
+);

@@ -39,12 +39,12 @@ if (__TITAN_ENABLED__) {
 // TODO: angular loader doesn't recognize this as a module definition b/c modulesToInclude is not an ArrayExpression
 // manually appending .name for now
 module.exports = angular.module('netflix.spinnaker', modulesToInclude)
-.run(() => {
-  console.info('run: app/scripts/index.js');
-})
-.config(() => {
-  console.info('config: app/scripts/index.js');
-})
+  .run(() => {
+    console.info('run: app/scripts/index.js');
+  })
+  .config(() => {
+    console.info('config: app/scripts/index.js');
+  })
+  .name;
 
-.name;
 

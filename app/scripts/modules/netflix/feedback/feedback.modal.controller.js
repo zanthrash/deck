@@ -27,7 +27,7 @@ module.exports = angular.module('spinnaker.netflix.feedback.modal.controller', [
 
     function getContactInfo() {
       if ($scope.userIsAuthenticated) {
-        return authenticationService.getAuthenticatedUser().name;
+        return authenticationService.getAuthenticatedUser();
       }
       return $scope.feedback.contact;
     }
@@ -72,4 +72,4 @@ module.exports = angular.module('spinnaker.netflix.feedback.modal.controller', [
     this.cancel = function () {
       $modalInstance.dismiss();
     };
-  }).name;
+  });

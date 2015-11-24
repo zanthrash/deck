@@ -69,4 +69,4 @@ module.exports = angular.module('spinnaker.core.loadBalancer.filter.controller',
     }));
   }
 )
-.name;
+;

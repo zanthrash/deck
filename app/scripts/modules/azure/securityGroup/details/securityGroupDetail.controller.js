@@ -105,4 +105,4 @@ module.exports = angular.module('spinnaker.azure.securityGroup.azure.details.con
     };
 
   }
-).name;
+);

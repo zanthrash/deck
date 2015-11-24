@@ -282,4 +282,4 @@ module.exports = angular.module('spinnaker.core.cluster.service', [
       getClusters: getClusters,
     };
 
-  }).name;
+  });

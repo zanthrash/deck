@@ -498,4 +498,4 @@ module.exports = angular.module('spinnaker.gce.instanceType.service', [
     };
   }
 )
-.name;
+;

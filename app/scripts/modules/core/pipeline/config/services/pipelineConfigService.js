@@ -79,7 +79,7 @@ module.exports = angular.module('spinnaker.core.pipeline.config.services.configS
 
     function triggerPipeline(applicationName, pipelineName, body) {
       body = body || {};
-      body.user = authenticationService.getAuthenticatedUser().name;
+      body.user = authenticationService.getAuthenticatedUser();
       return Restangular.one('pipelines', applicationName)
         .customPOST(body, pipelineName);
     }
@@ -174,4 +174,4 @@ module.exports = angular.module('spinnaker.core.pipeline.config.services.configS
       toggleTrigger: toggleTrigger,
     };
 
-  }).name;
+  });

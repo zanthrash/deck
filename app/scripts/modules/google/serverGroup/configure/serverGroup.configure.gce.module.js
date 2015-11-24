@@ -21,4 +21,4 @@ module.exports = angular.module('spinnaker.serverGroup.configure.gce', [
   require('./serverGroupAdvancedSettingsSelector.directive.js'),
 
 ])
-.name;
+;
