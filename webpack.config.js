@@ -12,10 +12,11 @@ module.exports = {
   debug: true,
   entry: {
     settings: './settings.js',
-    app: './app/scripts/app.js',
+    app: ['./app/scripts/app.js', './app/scripts/app.ts'],
     vendor: ['jquery', 'angular', 'angular-animate', 'angular-ui-bootstrap', 'angular-ui-router',
       'source-sans-pro', 'angular-cache', 'angular-marked', 'angular-messages', 'angular-sanitize',
-      'bootstrap', 'clipboard', 'd3', 'jquery-ui', 'moment-timezone', 'rx'
+      'bootstrap', 'clipboard', 'd3', 'jquery-ui', 'moment-timezone', 'rx', 'reflect-metadata', 'zone.js',
+      '@angular/platform-browser', '@angular/platform-browser-dynamic', '@angular/core', '@angular/common',
     ]
   },
   output: {
