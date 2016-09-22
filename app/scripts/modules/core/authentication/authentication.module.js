@@ -3,7 +3,7 @@
 let angular = require('angular');
 
 module.exports = angular.module('spinnaker.authentication', [
-  require('./authentication.service.js'),
+  'spinnaker.authentication.service',
   require('../config/settings.js'),
   require('./authentication.initializer.service.js'),
   require('./authentication.interceptor.service.js'),

@@ -7,7 +7,7 @@ require('./../tableau.less');
 module.exports = angular
   .module('spinnaker.netflix.tableau.summary.controller', [
     require('../../../core/config/settings'),
-    require('../../../core/authentication/authentication.service'),
+    'spinnaker.authentication.service'
   ])
   .controller('SummaryTableauCtrl', function ($sce, settings, authenticationService) {
     this.$onInit = () => {

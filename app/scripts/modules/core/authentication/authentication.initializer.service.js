@@ -6,7 +6,7 @@ let angular = require('angular');
 
 module.exports = angular.module('spinnaker.authentication.initializer.service', [
   require('../config/settings.js'),
-  require('./authentication.service.js'),
+  'spinnaker.authentication.service',
   require('./loggedOut.modal.controller'),
 ])
   .factory('authenticationInitializer', function ($http, $rootScope, redirectService, authenticationService,

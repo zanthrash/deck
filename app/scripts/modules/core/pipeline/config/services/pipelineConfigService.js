@@ -5,7 +5,7 @@ let angular = require('angular');
 module.exports = angular.module('spinnaker.core.pipeline.config.services.configService', [
   require('../../../api/api.service'),
   require('../../../utils/lodash.js'),
-  require('../../../authentication/authentication.service.js'),
+  'spinnaker.authentication.service',
   require('../../../cache/viewStateCache.js'),
 ])
   .factory('pipelineConfigService', function (_, $q, API, authenticationService, viewStateCache) {

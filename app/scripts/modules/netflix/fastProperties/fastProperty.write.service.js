@@ -6,7 +6,7 @@ module.exports = angular
   .module('spinnaker.netflix.fastProperties.write.service', [
     require('../../core/api/api.service'),
     require('../../core/utils/lodash.js'),
-    require('../../core/authentication/authentication.service.js')
+    'spinnaker.authentication.service'
   ])
   .factory('fastPropertyWriter', function (API, authenticationService, _) {
 

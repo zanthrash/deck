@@ -11,7 +11,7 @@ module.exports = angular.module('spinnaker.core.delivery.manualPipelineExecution
   require('../../pipeline/config/pipelineConfigProvider.js'),
   require('../../pipeline/config/services/pipelineConfigService'),
   require('../../notification/notification.service'),
-  require('../../authentication/authentication.service'),
+  'spinnaker.authentication.service'
 ])
   .controller('ManualPipelineExecutionCtrl', function (_, $uibModalInstance, pipeline, application, pipelineConfig,
                                                        notificationService, authenticationService,

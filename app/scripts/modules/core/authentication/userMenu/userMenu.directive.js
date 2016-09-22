@@ -4,7 +4,7 @@ let angular = require('angular');
 
 module.exports = angular.module('spinnaker.core.authentication.userMenu.directive', [
   require('../../config/settings.js'),
-  require('../authentication.service.js'),
+  'spinnaker.authentication.service'
 ])
   .directive('userMenu', function(settings, authenticationService) {
     return {

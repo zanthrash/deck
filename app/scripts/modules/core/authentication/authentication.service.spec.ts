@@ -1,16 +1,22 @@
 'use strict';
 
+import { AuthenticationService } from './authentication.service.ts'
 describe('authenticationService', function() {
 
-  beforeEach(
-    window.module(
-      require('./authentication.service')
-    )
-  );
+  // beforeEach(
+  //   window.module(
+  //     require('./authentication.service')
+  //   )
+  // );
+  //
+  // beforeEach(window.inject(function(authenticationService) {
+  //   this.authenticationService = authenticationService;
+  // }));
+  let authenticationService: AuthenticationService;
 
-  beforeEach(window.inject(function(authenticationService) {
-    this.authenticationService = authenticationService;
-  }));
+  beforeEach(() => {
+    authenticationService = new AuthenticationService()
+  });
 
   describe('setAuthenticatedUser', function() {
     it('sets name, authenticated flag', function() {

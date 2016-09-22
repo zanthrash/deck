@@ -3,7 +3,7 @@
 let angular = require('angular');
 
 module.exports = angular.module('spinnaker.core.taskExecutor', [
-  require('../authentication/authentication.service.js'),
+  'spinnaker.authentication.service',
   require('./task.read.service.js'),
   require('./task.write.service.js'),
 ])
