@@ -39,9 +39,7 @@ module.exports = angular
     require('imports?define=>false!exports?"angularSpinner"!angular-spinner'),
 
     require('./projects/projects.module.js'),
-
     require('./application/application.module.js'),
-
     require('./account/accountLabelColor.directive.js'),
     require('./analytics/analytics.service'),
     require('./authentication/authentication.module.js'),
@@ -83,6 +81,7 @@ module.exports = angular
     require('./naming/naming.service.js'),
     require('./navigation/states.provider.js'),
     require('./notification/notifications.module.js'),
+
     require('./notification/types/email/email.notification.type.module.js'),
     require('./notification/types/hipchat/hipchat.notification.type.module.js'),
     require('./notification/types/slack/slack.notification.type.module.js'),
@@ -97,18 +96,21 @@ module.exports = angular
     require('./pipeline/config/stages/core/stage.core.module.js'),
     require('./pipeline/config/stages/deploy/deployStage.module.js'),
     require('./pipeline/config/stages/destroyAsg/destroyAsgStage.module.js'),
+
     require('./pipeline/config/stages/determineTargetReference/determineTargetReference.module.js'),
     require('./pipeline/config/stages/disableAsg/disableAsgStage.module.js'),
     require('./pipeline/config/stages/disableCluster/disableClusterStage.module.js'),
     require('./pipeline/config/stages/enableAsg/enableAsgStage.module.js'),
     require('./pipeline/config/stages/executionWindows/executionWindowsStage.module.js'),
     require('./pipeline/config/stages/findAmi/findAmiStage.module.js'),
+
     require('./pipeline/config/stages/findImageFromTags/findImageFromTagsStage.module.js'),
     require('./pipeline/config/stages/jenkins/jenkinsStage.module.js'),
     require('./pipeline/config/stages/manualJudgment/manualJudgmentStage.module.js'),
     require('./pipeline/config/stages/tagImage/tagImageStage.module.js'),
     require('./pipeline/config/stages/pipeline/pipelineStage.module.js'),
     require('./pipeline/config/stages/resizeAsg/resizeAsgStage.module.js'),
+
     require('./pipeline/config/stages/runJob/runJobStage.module.js'),
     require('./pipeline/config/stages/scaleDownCluster/scaleDownClusterStage.module.js'),
     require('./pipeline/config/stages/script/scriptStage.module.js'),
@@ -116,6 +118,7 @@ module.exports = angular
     require('./pipeline/config/stages/wait/waitStage.module.js'),
     require('./pipeline/config/stages/waitForParentTasks/waitForParentTasks.js'),
     require('./pipeline/config/stages/createLoadBalancer/createLoadBalancerStage.module.js'),
+
     require('./pipeline/config/stages/applySourceServerGroupCapacity/applySourceServerGroupCapacityStage.module.js'),
     require('./pipeline/config/preconditions/preconditions.module.js'),
     require('./pipeline/config/preconditions/types/clusterSize/clusterSize.precondition.type.module.js'),

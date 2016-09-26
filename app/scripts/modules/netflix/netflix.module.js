@@ -14,10 +14,12 @@ module.exports = angular
     require('./blesk/blesk.module.js'),
     require('./fastProperties/fastProperties.module.js'),
     require('./alert/alertHandler.js'),
+
     require('./feedback/feedback.module.js'),
     require('./instance/aws/netflixAwsInstanceDetails.controller.js'),
     require('./instance/titus/netflixTitusInstanceDetails.controller.js'),
     require('./pipeline/stage/canary/canaryStage.module.js'),
+
     require('./pipeline/stage/acaTask/acaTaskStage.module'),
     require('./pipeline/stage/properties'),
     require('./pipeline/stage/quickPatchAsg/quickPatchAsgStage.module.js'),
@@ -27,6 +29,7 @@ module.exports = angular
     require('./canary'),
     require('./templateOverride/templateOverrides.module.js'),
     require('./migrator/pipeline/pipeline.migrator.directive.js'),
+
     require('./serverGroup/wizard/serverGroupCommandConfigurer.service.js'),
     require('./serverGroup/diff/securityGroupDiff.directive.js'),
     require('./serverGroup/networking/networking.module.js'),
@@ -44,35 +47,39 @@ module.exports = angular
 
     dataSourceRegistryModule,
   ])
-  .run(function(cloudProviderRegistry, applicationDataSourceRegistry, settings) {
-    if (settings.feature && settings.feature.netflixMode) {
-      cloudProviderRegistry.overrideValue(
-        'aws',
-        'instance.detailsTemplateUrl',
-        require('./instance/aws/instanceDetails.html')
-      );
-      cloudProviderRegistry.overrideValue(
-        'aws',
-        'instance.detailsController',
-        'netflixAwsInstanceDetailsCtrl'
-      );
-      cloudProviderRegistry.overrideValue(
-        'aws',
-        'serverGroup.detailsTemplateUrl',
-        require('./serverGroup/awsServerGroupDetails.html')
-      );
-      cloudProviderRegistry.overrideValue(
-        'titus',
-        'instance.detailsTemplateUrl',
-        require('./instance/titus/instanceDetails.html')
-      );
-      cloudProviderRegistry.overrideValue(
-        'titus',
-        'instance.detailsController',
-        'netflixTitusInstanceDetailsCtrl'
-      );
-      applicationDataSourceRegistry.setDataSourceOrder([
-        'executions', 'serverGroups', 'loadBalancers', 'securityGroups', 'properties', 'analytics', 'tasks', 'config',
-      ]);
-    }
+  .run(function($timeout, $injector, settings, applicationDataSourceRegistry ) {
+    $timeout(() => {
+      if (settings.feature && settings.feature.netflixMode) {
+        let cloudProviderRegistry = $injector.get('cloudProviderRegistry');
+
+        cloudProviderRegistry.overrideValue(
+          'aws',
+          'instance.detailsTemplateUrl',
+          require('./instance/aws/instanceDetails.html')
+        );
+        cloudProviderRegistry.overrideValue(
+          'aws',
+          'instance.detailsController',
+          'netflixAwsInstanceDetailsCtrl'
+        );
+        cloudProviderRegistry.overrideValue(
+          'aws',
+          'serverGroup.detailsTemplateUrl',
+          require('./serverGroup/awsServerGroupDetails.html')
+        );
+        cloudProviderRegistry.overrideValue(
+          'titus',
+          'instance.detailsTemplateUrl',
+          require('./instance/titus/instanceDetails.html')
+        );
+        cloudProviderRegistry.overrideValue(
+          'titus',
+          'instance.detailsController',
+          'netflixTitusInstanceDetailsCtrl'
+        );
+        applicationDataSourceRegistry.setDataSourceOrder([
+          'executions', 'serverGroups', 'loadBalancers', 'securityGroups', 'properties', 'analytics', 'tasks', 'config',
+        ]);
+       }
+    }, 0);
   });

@@ -77,8 +77,11 @@ module.exports = angular
     };
 
   })
-  .run(function(serverGroupCommandRegistry, netflixServerGroupCommandConfigurer, settings) {
-    if (settings.feature && settings.feature.netflixMode) {
-      serverGroupCommandRegistry.register('aws', netflixServerGroupCommandConfigurer);
-    }
+  .run(function($timeout, $injector, settings, serverGroupCommandRegistry) {
+    $timeout(() => {
+      let netflixServerGroupCommandConfigurer = $injector.get('netflixServerGroupCommandConfigurer');
+      if (settings.feature && settings.feature.netflixMode) {
+        serverGroupCommandRegistry.register('aws', netflixServerGroupCommandConfigurer);
+      }
+    }, 0);
   });

@@ -13,12 +13,15 @@ module.exports = angular.module('spinnaker.authentication', [
   .config(function ($httpProvider) {
     $httpProvider.interceptors.push('gateRequestInterceptor');
   })
-  .run(function (schedulerFactory, authenticationInitializer, settings) {
-    if (settings.authEnabled) {
-      // schedule deck to re-authenticate every 10 min.
-      schedulerFactory.createScheduler(settings.authTtl || 600000).subscribe(authenticationInitializer.reauthenticateUser);
-      authenticationInitializer.authenticateUser();
-    }
+  .run(function (schedulerFactory, $injector, settings) {
+    setTimeout( () => {
+      if (settings.authEnabled) {
+        let authenticationInitializer = $injector.get('authenticationInitializer');
+        // schedule deck to re-authenticate every 10 min.
+        schedulerFactory.createScheduler(settings.authTtl || 600000).subscribe(authenticationInitializer.reauthenticateUser);
+        authenticationInitializer.authenticateUser();
+      }
+    }, 0);
   })
   .factory('gateRequestInterceptor', function (settings) {
     return {

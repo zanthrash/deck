@@ -7,7 +7,6 @@ module.exports = angular.module('spinnaker.authentication.interceptor.service', 
   'spinnaker.authentication.service'
 ])
   .factory('authenticationInterceptor', function ($q, settings, authenticationService) {
-
     return {
       request: function (config) {
         var deferred = $q.defer();
@@ -28,7 +27,9 @@ module.exports = angular.module('spinnaker.authentication.interceptor.service', 
     };
   })
   .config(function ($httpProvider, settings) {
-    if (settings.authEnabled) {
-      $httpProvider.interceptors.push('authenticationInterceptor');
-    }
+    setTimeout(() => {
+      if (settings.authEnabled) {
+        $httpProvider.interceptors.push('authenticationInterceptor');
+      }
+    }, 0);
   });

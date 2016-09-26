@@ -2,7 +2,6 @@ import { NgModule, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser'
 import { UpgradeAdapter } from '@angular/upgrade';
-import './app.js'
 
 import { AuthenticationService } from './modules/core/authentication/authentication.service.ts'
 

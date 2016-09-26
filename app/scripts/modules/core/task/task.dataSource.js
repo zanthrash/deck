@@ -9,38 +9,45 @@ module.exports = angular
     require('./task.read.service'),
     require('../cluster/cluster.service'),
   ])
-  .run(function($q, applicationDataSourceRegistry, taskReader, clusterService) {
+  .run(function($q, $timeout, $injector, applicationDataSourceRegistry) {
 
-    let addTasks = (application, tasks) => {
-      return $q.when(angular.isArray(tasks) ? tasks : []);
-    };
+    $timeout(() => {
 
-    let loadTasks = (application) => {
-      return taskReader.getTasks(application.name);
-    };
+      let clusterService = $injector.get('clusterService');
+      let taskReader = $injector.get('taskReader');
 
-    let loadRunningTasks = (application) => {
-      return taskReader.getRunningTasks(application.name);
-    };
+      let addTasks = (application, tasks) => {
+        return $q.when(angular.isArray(tasks) ? tasks : []);
+      };
 
-    let addRunningTasks = (application, data) => {
-      clusterService.addTasksToServerGroups(application);
-      return $q.when(data);
-    };
+      let loadTasks = (application) => {
+        return taskReader.getTasks(application.name);
+      };
 
-    applicationDataSourceRegistry.registerDataSource(new DataSourceConfig({
-      key: 'tasks',
-      sref: '.tasks',
-      badge: 'runningTasks',
-      loader: loadTasks,
-      onLoad: addTasks,
-      lazy: true,
-    }));
+      let loadRunningTasks = (application) => {
+        return taskReader.getRunningTasks(application.name);
+      };
 
-    applicationDataSourceRegistry.registerDataSource(new DataSourceConfig({
-      key: 'runningTasks',
-      visible: false,
-      loader: loadRunningTasks,
-      onLoad: addRunningTasks,
-    }));
+      let addRunningTasks = (application, data) => {
+        clusterService.addTasksToServerGroups(application);
+        return $q.when(data);
+      };
+
+      applicationDataSourceRegistry.registerDataSource(new DataSourceConfig({
+        key: 'tasks',
+        sref: '.tasks',
+        badge: 'runningTasks',
+        loader: loadTasks,
+        onLoad: addTasks,
+        lazy: true,
+      }));
+
+      applicationDataSourceRegistry.registerDataSource(new DataSourceConfig({
+        key: 'runningTasks',
+        visible: false,
+        loader: loadRunningTasks,
+        onLoad: addRunningTasks,
+      }));
+    }, 0 );
+
   });

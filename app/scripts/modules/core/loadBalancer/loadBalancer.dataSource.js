@@ -8,23 +8,29 @@ module.exports = angular
     dataSourceRegistryModule,
     require('./loadBalancer.read.service'),
   ])
-  .run(function($q, applicationDataSourceRegistry, loadBalancerReader) {
+  .run(function($q, $timeout, $injector, applicationDataSourceRegistry) {
 
-    let loadLoadBalancers = (application) => {
-      return loadBalancerReader.loadLoadBalancers(application.name);
-    };
+    $timeout( () => {
+      let loadBalancerReader = $injector.get('loadBalancerReader');
 
-    let addLoadBalancers = (application, loadBalancers) => {
-      return $q.when(loadBalancers);
-    };
+      let loadLoadBalancers = (application) => {
+        return loadBalancerReader.loadLoadBalancers(application.name);
+      };
 
-    applicationDataSourceRegistry.registerDataSource(new DataSourceConfig({
-      key: 'loadBalancers',
-      optional: true,
-      loader: loadLoadBalancers,
-      onLoad: addLoadBalancers,
-      providerField: 'type',
-      credentialsField: 'account',
-      regionField: 'region',
-    }));
+      let addLoadBalancers = (application, loadBalancers) => {
+        return $q.when(loadBalancers);
+      };
+
+      applicationDataSourceRegistry.registerDataSource(new DataSourceConfig({
+        key: 'loadBalancers',
+        optional: true,
+        loader: loadLoadBalancers,
+        onLoad: addLoadBalancers,
+        providerField: 'type',
+        credentialsField: 'account',
+        regionField: 'region',
+      }));
+    }, 0);
+
+
   });

@@ -8,23 +8,28 @@ module.exports = angular
     dataSourceRegistryModule,
     require('./securityGroup.read.service'),
   ])
-  .run(function($q, applicationDataSourceRegistry, securityGroupReader) {
+  .run(function($q, $timeout, $injector, applicationDataSourceRegistry) {
 
-    let loadSecurityGroups = (application) => {
-      return securityGroupReader.loadSecurityGroupsByApplicationName(application.name);
-    };
+    $timeout(() => {
 
-    let addSecurityGroups = (application, securityGroups) => {
-      return securityGroupReader.getApplicationSecurityGroups(application, securityGroups);
-    };
+      let securityGroupReader = $injector.get('securityGroupReader');
 
-    applicationDataSourceRegistry.registerDataSource(new DataSourceConfig({
-      key: 'securityGroups',
-      optional: true,
-      loader: loadSecurityGroups,
-      onLoad: addSecurityGroups,
-      providerField: 'provider',
-      credentialsField: 'accountName',
-      regionField: 'region',
-    }));
+      let loadSecurityGroups = (application) => {
+        return securityGroupReader.loadSecurityGroupsByApplicationName(application.name);
+      };
+
+      let addSecurityGroups = (application, securityGroups) => {
+        return securityGroupReader.getApplicationSecurityGroups(application, securityGroups);
+      };
+
+      applicationDataSourceRegistry.registerDataSource(new DataSourceConfig({
+        key: 'securityGroups',
+        optional: true,
+        loader: loadSecurityGroups,
+        onLoad: addSecurityGroups,
+        providerField: 'provider',
+        credentialsField: 'accountName',
+        regionField: 'region',
+      }));
+    }, 0);
   });

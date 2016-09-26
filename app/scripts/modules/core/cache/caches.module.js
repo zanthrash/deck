@@ -9,6 +9,9 @@ module.exports = angular
     require('./collapsibleSectionStateCache.js'),
     require('./infrastructureCaches.js'),
   ])
-  .run(function(cacheInitializer) {
-    cacheInitializer.initialize();
+  .run(function($timeout, $injector) {
+    $timeout( () => {
+      let cacheInitializer = $injector.get('cacheInitializer');
+      cacheInitializer.initialize();
+    }, 0);
   });
