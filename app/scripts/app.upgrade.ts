@@ -7,15 +7,17 @@ import { AuthenticationService } from './modules/core/authentication/authenticat
 
 declare var angular: any;
 
-export const upgradeAdapter: UpgradeAdapter = new UpgradeAdapter(forwardRef(() => AppModule));
 
+export const foo = 'foo';
+
+export const upgradeAdapter: UpgradeAdapter = new UpgradeAdapter(forwardRef(() => SpinnakerModule));
 /*
  * This is where we upgrade/downgrade or stuff
  */
-
 angular
   .module('spinnaker.authentication.service', [])
   .factory('authenticationService', upgradeAdapter.downgradeNg2Provider(AuthenticationService));
+
 
 @NgModule({
   declarations: [],
@@ -27,10 +29,6 @@ angular
     AuthenticationService
   ]
 })
-class AppModule {}
+class SpinnakerModule {}
 
-/*
- * Boostrap the App
- */
-upgradeAdapter.bootstrap(document.body, ['netflix.spinnaker']);
 

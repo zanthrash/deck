@@ -1,8 +1,6 @@
 'use strict';
 
-import { Injectable } from '@angular/core'
-
-let angular = require('angular');
+import { Injectable } from '@angular/core';
 
 export class User {
 
@@ -56,5 +54,4 @@ export class AuthenticationService {
 export var authenticationServiceInjectables: Array<any> = [
   { provide: AuthenticationService, useClass: AuthenticationService }
 ];
-
 

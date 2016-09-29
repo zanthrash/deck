@@ -1,50 +1,43 @@
 'use strict';
 
-import { AuthenticationService } from './authentication.service.ts'
+import { AuthenticationService } from './authentication.service.ts';
+
 describe('authenticationService', function() {
 
-  // beforeEach(
-  //   window.module(
-  //     require('./authentication.service')
-  //   )
-  // );
-  //
-  // beforeEach(window.inject(function(authenticationService) {
-  //   this.authenticationService = authenticationService;
-  // }));
+
   let authenticationService: AuthenticationService;
 
   beforeEach(() => {
-    authenticationService = new AuthenticationService()
+    authenticationService = new AuthenticationService();
   });
 
   describe('setAuthenticatedUser', function() {
     it('sets name, authenticated flag', function() {
-      var user = this.authenticationService.getAuthenticatedUser();
+      var user = authenticationService.getAuthenticatedUser();
 
       expect(user.name).toBe('[anonymous]');
       expect(user.authenticated).toBe(false);
 
-      this.authenticationService.setAuthenticatedUser('kato@example.com');
+      authenticationService.setAuthenticatedUser('kato@example.com');
       expect(user.name).toBe('kato@example.com');
       expect(user.authenticated).toBe(true);
     });
 
     it('disregards falsy values', function() {
-      var user = this.authenticationService.getAuthenticatedUser();
+      var user = authenticationService.getAuthenticatedUser();
 
       expect(user.name).toBe('[anonymous]');
       expect(user.authenticated).toBe(false);
 
-      this.authenticationService.setAuthenticatedUser(null);
+      authenticationService.setAuthenticatedUser(null);
       expect(user.name).toBe('[anonymous]');
       expect(user.authenticated).toBe(false);
 
-      this.authenticationService.setAuthenticatedUser(false);
+      authenticationService.setAuthenticatedUser(false);
       expect(user.name).toBe('[anonymous]');
       expect(user.authenticated).toBe(false);
 
-      this.authenticationService.setAuthenticatedUser('');
+      authenticationService.setAuthenticatedUser('');
       expect(user.name).toBe('[anonymous]');
       expect(user.authenticated).toBe(false);
     });
@@ -54,14 +47,14 @@ describe('authenticationService', function() {
 
     it('fires events and sets user', function () {
       var firedEvents = 0;
-      this.authenticationService.onAuthentication(function() {
+      authenticationService.onAuthentication(function() {
         firedEvents++;
       });
-      this.authenticationService.onAuthentication(function() {
+      authenticationService.onAuthentication(function() {
         firedEvents++;
       });
-      this.authenticationService.setAuthenticatedUser('foo@bar.com');
-      expect(this.authenticationService.getAuthenticatedUser().name).toBe('foo@bar.com');
+      authenticationService.setAuthenticatedUser('foo@bar.com');
+      expect(authenticationService.getAuthenticatedUser().name).toBe('foo@bar.com');
       expect(firedEvents).toBe(2);
     });
   });

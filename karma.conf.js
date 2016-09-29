@@ -15,20 +15,29 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      './node_modules/reflect-metadata/Reflect.js',
-      './node_modules/jquery/dist/jquery.js',
-      './node_modules/angular/angular.js',
-      './node_modules/angular-mocks/angular-mocks.js',
-      //'app/**/*.spec.js',
-      'settings.js',
-      'test/test_index.js'
+      // './node_modules/@angular/core/bundles/core.umd.js',
+      // './node_modules/@angular/common/bundles/common.umd.js',
+      // './node_modules/reflect-metadata/Reflect.js',
+      // './node_modules/jquery/dist/jquery.js',
+      // './node_modules/angular/angular.js',
+      // './node_modules/angular-mocks/angular-mocks.js',
+      // //'app/**/*.spec.js',
+      // 'settings.js',
+
+      // // RxJs
+      // { pattern: 'node_modules/rxjs/**/*.js', included: false, watched: false },
+      // { pattern: 'node_modules/rxjs/**/*.js.map', included: false, watched: false },
+      //
+      // 'test/test_index.js'
+      {pattern: './karma-test-shim.js', watched: false}
     ],
 
     preprocessors: {
-      './**/*.spec.js': ['webpack'],
-      './**/*.spec.ts': ['webpack'],
-      'settings.js': ['webpack'],
-      'test/**/*.js': ['webpack'],
+      './karma-test-shim.js':['webpack']
+      // './**/*.spec.js': ['webpack'],
+      // './**/*.spec.ts': ['webpack'],
+      // 'settings.js': ['webpack'],
+      // 'test/**/*.js': ['webpack'],
     },
 
     webpack: {
@@ -151,6 +160,8 @@ module.exports = function(config) {
 
     client: {
       captureConsole: true,
-    }
+    },
+
+    browserNoActivityTimeout: 200000
   });
 };
